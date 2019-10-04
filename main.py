@@ -64,7 +64,8 @@ def main():
     env = CallCentre()
     ft = FeatureTransformer(env, n_components = 100)
     inputs = ft.dimensions
-    # Right now our network doesn't have any depth
+    # Right now our network has very little depthe
+    # Feel free to experiment with this hyperparameter to find something optimal
     pmodel = PolicyModel(ft,inputs, hidden_layer_sizes = [6,4])
     vmodel = ValueModel(ft,inputs, hidden_layer_sizes = [6,4])
     
