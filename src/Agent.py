@@ -58,7 +58,7 @@ class PolicyModel:
             M1 = M2
             
             
-        # final layer. We treat outputs as a discrete space, currently either 1 or -1
+        # final layer. We treat outputs as a discrete space, currently either 0,1 or 2
         # This is of course not optimal, and should be improved in future versions
         layer = HiddenLayer(M1, outputs, tf.nn.softmax, use_bias=False)
         self.hidden_layers.append(layer)
