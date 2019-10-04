@@ -142,8 +142,8 @@ class CallCentre:
         """
         # Expect call volume to be between 1 and 30
         call_volume = random.randint(1,30)
-        # Expect num_workers to be between 1 and 29
-        num_workers = random.randint(1,31)
+        # Expect num_workers to be between 1 and 50
+        num_workers = random.randint(1,50)
         # Expect target time to be between 10 and 30 seconds
         target_required_time = random.randint(10,30)
         # Expect average_required_time to be betwen 60 and 560 seconds
