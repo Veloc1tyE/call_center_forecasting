@@ -140,16 +140,16 @@ class CallCentre:
         Note that these bounds are very conservative due to too-large bounds
         causing overflow errors in the ErlangC formula
         """
-        # Expect call volume to be between 1 and 50
-        call_volume = random.randint(1,50)
-        # Expect num_workers to be between 1 and 51
-        num_workers = random.randint(1,51)
-        # Expect target time to be between 10 and 280 seconds
-        target_required_time = random.randint(10,280)
+        # Expect call volume to be between 1 and 30
+        call_volume = random.randint(1,30)
+        # Expect num_workers to be between 1 and 29
+        num_workers = random.randint(1,31)
+        # Expect target time to be between 10 and 30 seconds
+        target_required_time = random.randint(10,30)
         # Expect average_required_time to be betwen 60 and 560 seconds
         average_required_time = random.randint(60,560)
-        # Expect target_service_proportion to be between 0.5 and 1.0
-        target_service_proportion = random.uniform(0.5, 0.9)
+        # Expect target_service_proportion to be between 0.5 and 0.99
+        target_service_proportion = random.uniform(0.5, 0.99)
         # Now return an array
         return np.array([call_volume, num_workers,
                 target_required_time,
@@ -162,7 +162,7 @@ class CallCentre:
         self.n = max(1, self.a + random.randint(-30,-1))
         self.target = random.randint(10,30)
         self.average = random.randint(60,560)
-        self.goal = random.uniform(0.5,0.9)
+        self.goal = random.uniform(0.5,0.99)
         return np.array([self.a, self.n, self.target, 
                 self.average, self.goal])
         
