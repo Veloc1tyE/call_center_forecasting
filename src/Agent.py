@@ -15,7 +15,7 @@ Created on Thu Oct  3 23:15:56 2019
 # As such, I elected to solve the problem using policy-gradients, 
 # parameterized by a neural network
 
-# This is because the action-space is continuous, and the state-space is 
+# This is because the action-space is unbounded, and the state-space is 
 # effectively infinite, so simple RL techniques (such as what you would use to 
 # solve gridworld) will not work in this case
 
