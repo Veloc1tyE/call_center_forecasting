@@ -17,6 +17,12 @@ Created on Thu Oct  3 22:32:21 2019
 # by the minimal amount possible, thus ensuring that the call centre
 # allocates the optimal amount of resources.
 
+# In all other cases the reward structure incentivises an
+# increase/decrease in the number of workers 
+# until this goal has been reached, the reward is smooth and differentiable
+# to encourage stability and effective temporal-difference learning
+
+
 import math
 import numpy as np
 import random
@@ -108,10 +114,9 @@ class CallCentre:
                 # division by zero (issue handling)
                 return self.checkValid(2, currentProportion)             
         else:
-            # Goal has not been reached, so give a negative reward
-            # Now to incentivize rapid climbing, we change the reward
-            # structure a little
-            # print(min(math.exp(currentProportion), self.goal))
+            # Goal has not been reached, so reward is lower
+            # Note that simply using erlangC output as reward would
+            # cause instability, hence the exp
             return min(math.exp(currentProportion), self.goal)
 
     def checkValid(self, decrement, currentProportion):
@@ -119,15 +124,13 @@ class CallCentre:
         belowProportion = serviceLevel(self.a, self.n - decrement,
                                                self.target, self.average)
         if belowProportion >= self.goal:
-            # No, this isn't the minimum amount possible
-            # So the agent has not optimised fully
-            # Thus, we penalise for unnecessary use of resources
-            # print(math.exp(currentProportion) - 0.05*self.n)
+            # This isn't the minimum amount possible
+            # We penalise for unnecessary resource use, while still
+            # incentivising the required level of service (better over than under)
             return math.exp(currentProportion) - 0.05*self.n
         else:
             # Yay! The agent has optimised correctly!
-            # This incentivizes bare minimum resources
-            # print(10)
+            # This incentivizes bare minimum resource use
             return 10
         
     def sample(self):
