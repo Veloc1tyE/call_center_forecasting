@@ -15,6 +15,12 @@ Created on Thu Oct  3 23:15:56 2019
 # As such, I elected to solve the problem using policy-gradients, 
 # parameterized by a neural network
 
+# Also note that initially, policy-gradients were optimised using Monte-Carlo
+# However, this requires a concept of an 'episode', which is not well defined
+# for call centre forecasting; therefore, to enable real-world utility
+# we optimise using the actor critic method, which allows us to use temporal-difference
+# optimisation
+
 # This is because the action-space is unbounded, and the state-space is 
 # effectively infinite, so simple RL techniques (such as what you would use to 
 # solve gridworld) will not work in this case
